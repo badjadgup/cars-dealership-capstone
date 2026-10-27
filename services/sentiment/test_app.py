@@ -7,6 +7,7 @@ class SentimentTests(unittest.TestCase):
  def test_negation(self): self.assertEqual(analyze_text('not good')['sentiment'],'negative')
  def test_api(self):
   client=app.test_client()
+  self.assertEqual(client.get('/analyze/Fantastic%20services').json,{'sentiment':'positive'})
   self.assertEqual(client.post('/analyze',json={'text':'great'}).status_code,401)
   self.assertEqual(client.post('/analyze',json={'text':''},headers={'X-Service-Key':KEY}).status_code,400)
   self.assertEqual(client.post('/analyze',json={'text':'Fantastic services'},headers={'X-Service-Key':KEY}).json['sentiment'],'positive')

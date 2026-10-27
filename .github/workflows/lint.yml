@@ -1,0 +1,41 @@
+name: Lint Code
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  lint_python:
+    name: Lint Python Files
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Install dependencies
+        run: pip install flake8==7.3.0
+      - name: Print working directory
+        run: pwd
+      - name: Run Linter
+        run: python -m flake8 server services/sentiment scripts
+  lint_javascript:
+    name: Lint JavaScript Files
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Install JSHint
+        run: npm install --no-save jshint@2.13.6
+      - name: Run Linter
+        run: |
+          npx jshint services/dealership/course_routes.cjs
+          node --check services/dealership/app.js
+          node --check services/dealership/store.js
+          node --check services/dealership/index.js

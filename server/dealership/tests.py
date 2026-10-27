@@ -55,3 +55,28 @@ class ApplicationTests(TestCase):
   import requests
   request.side_effect=requests.ConnectionError()
   self.assertEqual(self.client.get('/api/dealers/').status_code,503)
+
+
+@override_settings(DEBUG=True)
+class CourseContractTests(TestCase):
+ def setUp(self):
+  get_user_model().objects.create_user('course_driver',password='CourseDemo!2026')
+ def test_login_logout_and_invalid_credentials(self):
+  payload={'userName':'course_driver','password':'CourseDemo!2026'}
+  response=self.client.post('/djangoapp/login',json.dumps(payload),content_type='application/json')
+  self.assertEqual(response.json(),{'userName':'course_driver','status':'Authenticated'})
+  self.assertIn('_auth_user_id',self.client.session)
+  self.assertEqual(self.client.get('/djangoapp/logout').json(),{'userName':''})
+  self.assertNotIn('_auth_user_id',self.client.session)
+  payload['password']='wrong'
+  self.assertEqual(self.client.post('/djangoapp/login',json.dumps(payload),content_type='application/json').status_code,401)
+ def test_legacy_get_logout_disabled_in_production(self):
+  with override_settings(DEBUG=False):
+   self.assertEqual(self.client.get('/djangoapp/logout').status_code,405)
+ def test_course_login_keeps_csrf_protection(self):
+  client=Client(enforce_csrf_checks=True)
+  self.assertEqual(client.post('/djangoapp/login',json.dumps({'userName':'course_driver','password':'CourseDemo!2026'}),content_type='application/json').status_code,403)
+ def test_course_car_shape(self):
+  make=CarMake.objects.create(name='Toyota')
+  CarModel.objects.create(make=make,name='Camry',body_type='Sedan')
+  self.assertEqual(self.client.get('/djangoapp/get_cars').json(),{'CarModels':[{'CarMake':'Toyota','CarModel':'Camry'}]})

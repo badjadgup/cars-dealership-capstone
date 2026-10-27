@@ -8,3 +8,5 @@ evidence
 **/data/local.json
 **/dist
 **/staticfiles
+
+**/data/local-course-v2.json

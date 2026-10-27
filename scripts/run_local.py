@@ -4,6 +4,7 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 parser=argparse.ArgumentParser()
 parser.add_argument('--skip-install',action='store_true',help='Use current Python and already-installed Node modules')
+parser.add_argument('--host',default='127.0.0.1',help='Django bind address; use 0.0.0.0 in the Cloud IDE')
 args=parser.parse_args()
 def run(command,cwd=ROOT): subprocess.run(command,cwd=cwd,check=True)
 npm='npm.cmd' if os.name=='nt' else 'npm'
@@ -22,7 +23,7 @@ try:
  for name,command,folder in [
   ('dealership',['node','index.js'],'services/dealership'),
   ('sentiment',[python,'app.py'],'services/sentiment'),
-  ('django_server',[python,'-u','manage.py','runserver','127.0.0.1:8000','--noreload'],'server')]:
+  ('django_server',[python,'-u','manage.py','runserver',f'{args.host}:8000','--noreload'],'server')]:
   target=ROOT/'evidence'/name
   target.parent.mkdir(exist_ok=True)
   log=target.open('w',encoding='utf-8'); handles.append(log)

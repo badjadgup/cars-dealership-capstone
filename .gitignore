@@ -10,3 +10,5 @@ services/dealership/data/local.json
 evidence/*.cookies
 evidence/*secret*
 *.log
+
+**/data/local-course-v2.json

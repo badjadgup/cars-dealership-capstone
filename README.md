@@ -1,10 +1,14 @@
-# Cars Dealership — Full Stack Application Development Capstone
+# Best Cars Dealership — Full Stack Application Development Capstone
 
-A responsive dealership discovery and review application built from scratch for the supplied IBM Full Stack Application Development Capstone assessment. Browse eight fictional US branches, filter by state, register, sign in, and publish vehicle purchase reviews with sentiment analysis.
+**Repository name:** `xrwvm-fullstack_developer_capstone`
+**Project name:** Best Cars Dealership — Full Stack Application Development Capstone
+**Public repository:** https://github.com/badjadgup/xrwvm-fullstack_developer_capstone
+
+A responsive dealership discovery and review application built from scratch for the supplied IBM Full Stack Application Development Capstone assessment. Browse the 50 US dealerships in IBM’s official course dataset, filter by state, register, sign in, and publish vehicle purchase reviews with sentiment analysis.
 
 ## What is implemented
 
-- React frontend with responsive dealership cards, city/name search, state filtering, dealership details, reviews, sign-in, and five-field registration.
+- React frontend with responsive dealership table, city/name search, state filtering, dealership details, reviews, sign-in, and five-field registration.
 - Django backend for session authentication, CSRF protection, validation, car makes/models, and administration.
 - Node.js/Express dealership and review service, with MongoDB in containers or a persistent JSON file in local development.
 - Flask sentiment service with deterministic lexicon scoring, basic negation handling, and positive/negative/neutral labels. This is a transparent rule-based classifier, not IBM Watson or a trained language model.
@@ -21,7 +25,7 @@ Install Python 3.11+ and Node.js 22.12+ (tested with Python 3.13 and Node 22.14)
 python scripts/run_local.py
 ```
 
-The script creates `.venv`, installs the Python and Node dependencies, builds React, migrates SQLite, seeds five makes and thirteen models, and starts all three services. Open http://127.0.0.1:8000. Press Ctrl+C in that terminal to stop them.
+The script creates `.venv`, installs the Python and Node dependencies, builds React, migrates SQLite, seeds the car catalogue, including all fifteen models requested by the course, and starts all three services. Open http://127.0.0.1:8000. Press Ctrl+C in that terminal to stop them.
 
 Use the Register page to create your own account. To create an administrator in a second terminal on Windows:
 
@@ -31,7 +35,7 @@ Use the Register page to create your own account. To create an administrator in 
 
 On macOS/Linux use `.venv/bin/python` instead. Dependencies already installed in the active interpreter? Use `python scripts/run_local.py --skip-install`.
 
-Local services: Django 8000, Node 3030, Flask 5050. They bind to loopback by default. Local dealership data is written to `services/dealership/data/local.json`; Django writes `server/db.sqlite3`. Both are ignored by Git. The seed commands are repeatable and do not erase existing reviews.
+Local services: Django 8000, Node 3030, Flask 5050. They bind to loopback by default. Local dealership data is written to `services/dealership/data/local-course-v2.json`; Django writes `server/db.sqlite3`. Both are ignored by Git. The seed commands are repeatable and do not erase existing reviews.
 
 ## Use MongoDB with Docker
 
@@ -105,7 +109,7 @@ A successful local run is not a successful GitHub Actions run. `evidence/local_v
 
 ## Assessment submission
 
-Follow [SUBMISSION_GUIDE.md](SUBMISSION_GUIDE.md) for all 28 tasks. Public source: [https://github.com/badjadgup/cars-dealership-capstone](https://github.com/badjadgup/cars-dealership-capstone). Successful GitHub Actions logs, cloud URL, and deployment screenshots must come from actual runs and deployment; see the submission checklist for remaining evidence.
+Follow [SUBMISSION_GUIDE.md](SUBMISSION_GUIDE.md) for all 28 tasks. Public source: [https://github.com/badjadgup/xrwvm-fullstack_developer_capstone](https://github.com/badjadgup/xrwvm-fullstack_developer_capstone). Successful GitHub Actions logs, cloud URL, and deployment screenshots must come from actual runs and deployment; see the submission checklist for remaining evidence.
 
 To record real local cURL results with an account you created:
 
@@ -116,3 +120,16 @@ python scripts/capture_evidence.py
 ```
 
 Review the code and explain how the services work before submitting, and follow your course's rules on assistance and attribution.
+
+
+## Course-compatible endpoints and data
+
+The supplied course grading feedback requires `/djangoapp/login` (`userName`/`password`, returning `status: Authenticated`), development-only GET `/djangoapp/logout` (empty `userName`), `/fetchDealers`, `/fetchDealers/Kansas`, `/fetchDealer/ID`, `/fetchReviews/dealer/ID`, `/djangoapp/get_cars` (`CarModels`), and GET `/analyze/Fantastic%20services`. These routes execute real application logic. React continues using `/api/`. The original demo store is preserved; the official course data uses a separate `local-course-v2.json` development store and `dealerships_course_v2` default MongoDB database.
+
+Official IBM course data and attribution: see `third_party/NOTICE.md` and the upstream Apache license.
+
+The `Lint Code` workflow checks Python syntax/name errors with Flake8, lints the course REST router with JSHint, and checks the Express ESM modules with Node. The separate `Capstone CI` workflow runs functional tests and container builds.
+
+## Skills Network lab port 8000
+
+In the Cloud IDE terminal, set `ALLOWED_HOSTS=localhost,127.0.0.1,.proxy.cognitiveclass.ai` and `CSRF_TRUSTED_ORIGINS=https://*.proxy.cognitiveclass.ai`, then run `python scripts/run_local.py --host 0.0.0.0`. Use **Launch Application**, enter **8000**, and copy the URL that the lab actually opens into `evidence/deploymentURL`. The assessment feedback requires this port-proxy URL. Keep the separate Code Engine address in `evidence/codeengineURL`; these are distinct deployments.

@@ -50,7 +50,7 @@ export default function Register({ onLogin }) {
               required
               maxLength={150}
               autoComplete="username"
-              placeholder="Choose a username"
+              placeholder="Username"
             />
           </label>
           <div className="form-row">
@@ -61,6 +61,7 @@ export default function Register({ onLogin }) {
                 required
                 maxLength={150}
                 autoComplete="given-name"
+                placeholder="First Name"
               />
             </label>
             <label>
@@ -70,6 +71,7 @@ export default function Register({ onLogin }) {
                 required
                 maxLength={150}
                 autoComplete="family-name"
+                placeholder="Last Name"
               />
             </label>
           </div>
@@ -81,7 +83,7 @@ export default function Register({ onLogin }) {
               required
               maxLength={254}
               autoComplete="email"
-              placeholder="you@example.com"
+              placeholder="email"
             />
           </label>
           <label>
@@ -92,6 +94,7 @@ export default function Register({ onLogin }) {
               required
               minLength={8}
               autoComplete="new-password"
+              placeholder="Password"
             />
           </label>
           <small className="muted">
@@ -103,7 +106,7 @@ export default function Register({ onLogin }) {
               {error}
             </p>
           )}
-          <button className="button full" disabled={busy}>
+          <button type="submit" className="button full" disabled={busy}>
             {busy ? "Creating account…" : "Register"}
           </button>
         </form>

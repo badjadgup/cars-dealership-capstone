@@ -2,3 +2,5 @@ node_modules
 __pycache__
 .env
 data/local.json
+
+**/data/local-course-v2.json

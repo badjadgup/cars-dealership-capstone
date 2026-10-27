@@ -13,7 +13,29 @@ import {
 } from "react-router-dom";
 import Register from "./components/Register/Register";
 import { api } from "./api";
-const states = ["California", "Illinois", "Kansas", "Texas"];
+const states = [
+  "Alabama",
+  "Arizona",
+  "California",
+  "Colorado",
+  "Connecticut",
+  "District of Columbia",
+  "Florida",
+  "Georgia",
+  "Illinois",
+  "Iowa",
+  "Kansas",
+  "Louisiana",
+  "Maryland",
+  "Michigan",
+  "Minnesota",
+  "New Jersey",
+  "New York",
+  "Pennsylvania",
+  "Texas",
+  "Virginia",
+  "Washington",
+];
 const photos = [
   "photo-1492144534655-ae79c964c9d7",
   "photo-1503376780353-7e6692767b70",
@@ -266,46 +288,44 @@ function Home({ user }) {
               {filtered.length === 1 ? "dealership" : "dealerships"} to explore{" "}
               <span>Find your kind of car people.</span>
             </div>
-            <div className="dealer-grid">
-              {filtered.map((d) => (
-                <article className="dealer-card" key={d.id}>
-                  <Link to={"/dealers/" + d.id} className="card-photo">
-                    <img
-                      loading="lazy"
-                      src={photo(d.id)}
-                      alt={"Vehicle representing " + d.full_name}
-                    />
-                    <span className="state-chip">{d.state}</span>
-                  </Link>
-                  <div className="card-body">
-                    <span className="eyebrow">
-                      {d.city.toUpperCase()} · {d.st}
-                    </span>
-                    <h3>
-                      <Link to={"/dealers/" + d.id}>{d.full_name}</Link>
-                    </h3>
-                    <p className="address">
-                      ⌖ {d.address}, {d.zip}
-                    </p>
-                    <p className="brands">{d.brands}</p>
-                    <div className="card-bottom">
-                      <Link to={"/dealers/" + d.id}>
-                        View dealership <span>↗</span>
-                      </Link>
-                      {user ? (
-                        <Link
-                          className="review-link"
-                          to={"/dealers/" + d.id + "/review"}
-                        >
-                          Review Dealer
-                        </Link>
-                      ) : (
-                        <span className="muted">Open for reviews</span>
+            <div className="dealer-table-wrap">
+              <table className="dealer-table" aria-label="Dealership directory">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Dealer Name</th>
+                    <th>City</th>
+                    <th>Address</th>
+                    <th>ZIP</th>
+                    <th>State</th>
+                    {user && <th>Review Dealer</th>}
+                  </tr>
+                </thead>
+                <tbody>
+                  {filtered.map((d) => (
+                    <tr key={d.id}>
+                      <td>{d.id}</td>
+                      <td>
+                        <Link to={"/dealers/" + d.id}>{d.full_name}</Link>
+                      </td>
+                      <td>{d.city}</td>
+                      <td>{d.address}</td>
+                      <td>{d.zip}</td>
+                      <td>{d.state}</td>
+                      {user && (
+                        <td>
+                          <Link
+                            className="review-link"
+                            to={"/dealers/" + d.id + "/review"}
+                          >
+                            Review Dealer
+                          </Link>
+                        </td>
                       )}
-                    </div>
-                  </div>
-                </article>
-              ))}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
             {!filtered.length && (
               <div className="empty">
@@ -439,8 +459,11 @@ function Dealer({ user }) {
       </div>
     );
   const { dealer: d, reviews } = data,
-    average = reviews.length
-      ? (reviews.reduce((s, r) => s + r.rating, 0) / reviews.length).toFixed(1)
+    ratedReviews = reviews.filter((r) => Number.isInteger(r.rating)),
+    average = ratedReviews.length
+      ? (
+          ratedReviews.reduce((s, r) => s + r.rating, 0) / ratedReviews.length
+        ).toFixed(1)
       : "—";
   return (
     <div className="container detail">
@@ -514,20 +537,30 @@ function Dealer({ user }) {
                 <div>
                   <strong>{r.name}</strong>
                   <small>
-                    {new Date(r.created_at).toLocaleDateString("en-US", {
-                      year: "numeric",
-                      month: "short",
-                      day: "numeric",
-                    })}
+                    {r.created_at
+                      ? new Date(r.created_at).toLocaleDateString("en-US", {
+                          year: "numeric",
+                          month: "short",
+                          day: "numeric",
+                        })
+                      : "Course sample review"}
                   </small>
                 </div>
                 <span className={"sentiment " + r.sentiment}>
                   {r.sentiment}
                 </span>
               </div>
-              <div className="stars" aria-label={r.rating + " out of 5 stars"}>
-                {"★".repeat(r.rating)}
-                {"☆".repeat(5 - r.rating)}
+              <div
+                className="stars"
+                aria-label={
+                  Number.isInteger(r.rating)
+                    ? r.rating + " out of 5 stars"
+                    : "Not rated"
+                }
+              >
+                {Number.isInteger(r.rating)
+                  ? "★".repeat(r.rating) + "☆".repeat(5 - r.rating)
+                  : "Not rated"}
               </div>
               <p className="review-text">{r.review}</p>
               <div className="review-car">

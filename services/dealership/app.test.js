@@ -24,9 +24,27 @@ test("dealers, Kansas filtering, authentication, review persistence and validati
   try {
     assert.equal((await fetch(base + "/dealers")).status, 401);
     const all = await (await call("/dealers")).json();
-    assert.equal(all.dealers.length, 8);
+    assert.equal(all.dealers.length, 50);
+    const course = await (await fetch(base + "/fetchDealers")).json();
+    assert.equal(course.length, 50);
+    assert.ok(course.every((d) => d.short_name && d.zip && d.st && d.state));
+    const kansas = await (await fetch(base + "/fetchDealers/Kansas")).json();
+    assert.equal(kansas.length, 1);
+    assert.equal(kansas[0].state, "Kansas");
+    assert.equal(
+      (await (await fetch(base + "/fetchDealer/8")).json())[0].id,
+      8,
+    );
+    const reviews = await (await fetch(base + "/fetchReviews/dealer/1")).json();
+    assert.ok(Array.isArray(reviews));
+    assert.ok(
+      reviews.every(
+        (r) => r.name && r.car_make && r.car_model && r.purchase_date,
+      ),
+    );
+    assert.equal((await fetch(base + "/fetchDealer/999")).status, 404);
     const ks = await (await call("/dealers?state=Kansas")).json();
-    assert.equal(ks.dealers.length, 3);
+    assert.equal(ks.dealers.length, 1);
     assert.ok(ks.dealers.every((d) => d.state === "Kansas"));
     assert.equal((await call("/dealers/999")).status, 404);
     assert.equal(
@@ -68,7 +86,7 @@ test(
     const store = await createStore({ mongoUrl: process.env.MONGODB_TEST_URI });
     try {
       assert.equal(store.mode, "mongodb");
-      assert.equal((await store.dealers()).length, 8);
+      assert.equal((await store.dealers()).length, 50);
       const review = {
         id: "ci-" + Date.now(),
         dealership: 1,

@@ -19,6 +19,8 @@ def analyze_text(text):
          'score':score,'method':'lexicon-v1'}
 @app.before_request
 def authorize():
+ if request.method == 'GET' and request.path.startswith('/analyze/'):
+  return None
  if request.path!='/health' and not hmac.compare_digest(request.headers.get('X-Service-Key',''),KEY):
   return jsonify(error='Service authentication required.'),401
 @app.get('/health')
@@ -29,4 +31,10 @@ def analyze():
  if not isinstance(data,dict) or not isinstance(data.get('text'),str) or not 1<=len(data['text'].strip())<=5000:
   return jsonify(error='Text must contain 1 to 5,000 characters.'),400
  return jsonify(analyze_text(data['text']))
+@app.get('/analyze/<path:text>')
+def analyze_course(text):
+ if not 1 <= len(text.strip()) <= 5000:
+  return jsonify(error='Text must contain 1 to 5,000 characters.'),400
+ return jsonify(sentiment=analyze_text(text)['sentiment'])
+
 if __name__=='__main__': app.run(host=os.getenv('HOST','127.0.0.1'),port=int(os.getenv('PORT','5050')),debug=False)

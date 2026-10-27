@@ -1,6 +1,6 @@
 # Final assessment — 28-task submission guide
 
-Status: the application is implemented and running locally. Source files exist, local API evidence has been captured, and one screenshot of the anonymous dealership page exists. Public repository: https://github.com/badjadgup/cars-dealership-capstone. GitHub Actions evidence and cloud deployment still need verification. Browser automation stopped before the remaining UI evidence could be captured.
+Status: the application is implemented and running locally. Source files exist, local API evidence has been captured, and one screenshot of the anonymous dealership page exists. Public repository: https://github.com/badjadgup/xrwvm-fullstack_developer_capstone. GitHub Actions evidence and cloud deployment still need verification. Browser automation stopped before the remaining UI evidence could be captured.
 
 ## Task-by-task checklist
 
@@ -57,10 +57,10 @@ If Git asks for your author identity, configure your own name and GitHub email b
 3. Confirm these files open while signed out (replace YOUR_USERNAME and use your actual repository name):
 
 ```text
-https://github.com/badjadgup/cars-dealership-capstone/blob/main/README.md
-https://github.com/badjadgup/cars-dealership-capstone/blob/main/server/frontend/static/About.html
-https://github.com/badjadgup/cars-dealership-capstone/blob/main/server/frontend/static/Contact.html
-https://github.com/badjadgup/cars-dealership-capstone/blob/main/server/frontend/src/components/Register/Register.jsx
+https://github.com/badjadgup/xrwvm-fullstack_developer_capstone/blob/main/README.md
+https://github.com/badjadgup/xrwvm-fullstack_developer_capstone/blob/main/server/frontend/static/About.html
+https://github.com/badjadgup/xrwvm-fullstack_developer_capstone/blob/main/server/frontend/static/Contact.html
+https://github.com/badjadgup/xrwvm-fullstack_developer_capstone/blob/main/server/frontend/src/components/Register/Register.jsx
 ```
 
 The four file links above point to this project’s public main branch.

@@ -1,5 +1,5 @@
-COMMAND (shell variables and local file paths normalized):
-'C:\Windows\system32\curl.exe' --silent --show-error --fail-with-body --max-time 30 --cookie session.cookies --cookie-jar session.cookies --request POST --header 'Content-Type: application/json' --header "X-CSRFToken: $CSRF_TOKEN" --data-binary @login-secret.json http://127.0.0.1:8000/api/login/
+Executed cURL command (cookie filename and CSRF token normalized):
+'C:\Windows\system32\curl.exe' --silent --show-error --fail-with-body --max-time 30 --cookie session.cookies --cookie-jar session.cookies --request POST --header 'Content-Type: application/json' --header 'X-CSRFToken: $CSRF_TOKEN' --data '{"userName": "course_demo", "password": "CourseDemo!2026-Assessment"}' http://127.0.0.1:8100/djangoapp/login
 
-ACTUAL OUTPUT:
-{"user": {"username": "capstone_driver"}}
+Actual terminal output:
+{"userName": "course_demo", "status": "Authenticated"}

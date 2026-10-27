@@ -1,4 +1,5 @@
 import express from "express";
+import createCourseRouter from "./course_routes.cjs";
 import { timingSafeEqual, randomUUID } from "node:crypto";
 export function createApp(
   store,
@@ -10,6 +11,7 @@ export function createApp(
   app.get("/health", (_req, res) =>
     res.json({ status: "ok", service: "dealership", storage: store.mode }),
   );
+  app.use(createCourseRouter(express, store));
   app.use((req, res, next) => {
     const a = Buffer.from(req.get("X-Service-Key") || ""),
       b = Buffer.from(key);

@@ -1153,3 +1153,39 @@ small.muted {
 html {
   scroll-padding-top: 110px;
 }
+
+.dealer-table-wrap {
+  overflow-x: auto;
+  border: 1px solid #dbe3da;
+  border-radius: 9px;
+  background: white;
+}
+.dealer-table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 13px;
+  text-align: left;
+}
+.dealer-table th {
+  background: #eaf0e5;
+  color: #173b37;
+  padding: 16px 14px;
+  white-space: nowrap;
+}
+.dealer-table td {
+  padding: 14px;
+  border-bottom: 1px solid #e7ece4;
+  vertical-align: top;
+}
+.dealer-table tbody tr:nth-child(even) {
+  background: #f7faf4;
+}
+.dealer-table td a {
+  font-weight: 600;
+  color: #173b37;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.dealer-table tbody tr:hover {
+  background: #edf4e7;
+}

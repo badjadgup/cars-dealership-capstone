@@ -5,7 +5,7 @@ import { MongoClient } from "mongodb";
 const here = path.dirname(fileURLToPath(import.meta.url));
 export async function createStore({
   mongoUrl = process.env.MONGODB_URI,
-  localFile = path.join(here, "data/local.json"),
+  localFile = path.join(here, "data/local-course-v2.json"),
 } = {}) {
   const seed = JSON.parse(
     await fs.readFile(path.join(here, "data/seed.json"), "utf8"),
@@ -15,7 +15,7 @@ export async function createStore({
       serverSelectionTimeoutMS: 8000,
     });
     await client.connect();
-    const db = client.db(process.env.MONGODB_DATABASE || "dealerships");
+    const db = client.db(process.env.MONGODB_DATABASE || "dealerships_course_v2");
     await db.collection("dealers").createIndex({ id: 1 }, { unique: true });
     await db.collection("reviews").createIndex({ id: 1 }, { unique: true });
     for (const dealer of seed.dealers)
@@ -72,7 +72,7 @@ export async function createStore({
       structuredClone(
         data.reviews
           .filter((r) => r.dealership === id)
-          .sort((a, b) => b.created_at.localeCompare(a.created_at)),
+          .sort((a, b) => String(b.created_at || "").localeCompare(String(a.created_at || ""))),
       ),
     add(review) {
       const operation = queue.then(async () => {
