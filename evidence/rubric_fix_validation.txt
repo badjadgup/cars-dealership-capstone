@@ -1,0 +1,8 @@
+Local validation of rubric fixes, 2026-10-27:
+Django: 11 tests passed, system checks clear.
+Flask sentiment: 5 tests passed.
+Node: local JSON/API integration test passed; MongoDB integration skipped locally because no MongoDB daemon is running. GitHub Capstone CI provides MongoDB.
+React: Vite production build passed (42 modules).
+Lint: Flake8 selected syntax/name-error checks passed; JSHint course router passed.
+Evidence: real curl requests against remediated services on local port 8100; 50 dealers returned.
+Screenshots: actual browser capture, root administrator and logged-out dealer table.

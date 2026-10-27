@@ -35,8 +35,9 @@ test("dealers, Kansas filtering, authentication, review persistence and validati
       (await (await fetch(base + "/fetchDealer/8")).json())[0].id,
       8,
     );
-    const reviews = await (await fetch(base + "/fetchReviews/dealer/1")).json();
+    const reviews = await (await fetch(base + "/fetchReviews/dealer/15")).json();
     assert.ok(Array.isArray(reviews));
+    assert.ok(reviews.length > 0);
     assert.ok(
       reviews.every(
         (r) => r.name && r.car_make && r.car_model && r.purchase_date,

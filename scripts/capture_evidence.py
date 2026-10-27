@@ -33,7 +33,7 @@ with tempfile.TemporaryDirectory(prefix='course-curl-') as temporary:
     payload = json.dumps({'userName': user, 'password': password})
     save('loginuser', *invoke('/djangoapp/login', ['--request', 'POST', '--header', 'Content-Type: application/json',
          '--header', 'X-CSRFToken: ' + token, '--data', payload]))
-    for name, path in [('getdealerreviews', '/fetchReviews/dealer/1'), ('getalldealers', '/fetchDealers'),
+    for name, path in [('getdealerreviews', '/fetchReviews/dealer/15'), ('getalldealers', '/fetchDealers'),
                        ('getdealerbyid', '/fetchDealer/8'), ('getdealersbyState', '/fetchDealers/Kansas'),
                        ('getallcarmakes', '/djangoapp/get_cars'), ('analyzereview', '/analyze/Fantastic%20services')]:
         save(name, *invoke(path))
