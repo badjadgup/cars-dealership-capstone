@@ -1,0 +1,5 @@
+COMMAND (shell variables and local file paths normalized):
+'C:\Windows\system32\curl.exe' --silent --show-error --fail-with-body --max-time 30 --cookie session.cookies --cookie-jar session.cookies --request POST --header "X-CSRFToken: $CSRF_TOKEN" http://127.0.0.1:8000/api/logout/
+
+ACTUAL OUTPUT:
+{"message": "Logged out successfully."}

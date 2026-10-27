@@ -1,0 +1,5 @@
+COMMAND (shell variables and local file paths normalized):
+'C:\Windows\system32\curl.exe' --silent --show-error --fail-with-body --max-time 30 --cookie session.cookies --cookie-jar session.cookies 'http://127.0.0.1:8000/api/analyze/?text=Fantastic%20services'
+
+ACTUAL OUTPUT:
+{"method": "lexicon-v1", "score": 1, "sentiment": "positive"}

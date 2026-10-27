@@ -1,0 +1,64 @@
+COMMAND: C:\Python313\python.exe -u manage.py runserver 127.0.0.1:8000 --noreload
+Performing system checks...
+
+System check identified no issues (0 silenced).
+October 27, 2026 - 12:53:02
+Django version 5.2.18, using settings 'config.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CTRL-BREAK.
+
+WARNING: This is a development server. Do not use it in a production setting. Use a production WSGI or ASGI server instead.
+For more information on production servers see: https://docs.djangoproject.com/en/5.2/howto/deployment/
+[27/Oct/2026 12:53:30] "GET / HTTP/1.1" 200 574
+[27/Oct/2026 12:53:31] "GET /static/assets/index-9cyLbLht.js HTTP/1.1" 200 280477
+[27/Oct/2026 12:53:31] "GET /static/assets/index-ChNFwfi9.css HTTP/1.1" 200 14701
+[27/Oct/2026 12:53:32] "GET /api/me/ HTTP/1.1" 200 14
+[27/Oct/2026 12:53:32] "GET /api/dealers/?state= HTTP/1.1" 200 1947
+[27/Oct/2026 12:53:33] "GET /favicon.ico HTTP/1.1" 200 574
+[27/Oct/2026 12:55:44] "GET /api/csrf/ HTTP/1.1" 200 81
+[27/Oct/2026 12:55:46] "POST /api/register/ HTTP/1.1" 201 41
+[27/Oct/2026 12:55:47] "GET /api/csrf/ HTTP/1.1" 200 81
+[27/Oct/2026 12:55:49] "POST /api/login/ HTTP/1.1" 200 41
+[27/Oct/2026 12:55:49] "GET /api/dealers/1/reviews/ HTTP/1.1" 200 708
+[27/Oct/2026 12:55:49] "GET /api/dealers/ HTTP/1.1" 200 1947
+[27/Oct/2026 12:55:49] "GET /api/dealers/1/ HTTP/1.1" 200 264
+[27/Oct/2026 12:55:49] "GET /api/dealers/?state=Kansas HTTP/1.1" 200 746
+[27/Oct/2026 12:55:49] "GET /api/cars/ HTTP/1.1" 200 868
+[27/Oct/2026 12:55:49] "GET /api/analyze/?text=Fantastic%20services HTTP/1.1" 200 61
+[27/Oct/2026 12:55:49] "GET /api/csrf/ HTTP/1.1" 200 81
+[27/Oct/2026 12:55:49] "POST /api/logout/ HTTP/1.1" 200 39
+[27/Oct/2026 12:57:19] "GET /api/csrf/ HTTP/1.1" 200 81
+[27/Oct/2026 12:57:20] "POST /api/login/ HTTP/1.1" 200 41
+[27/Oct/2026 12:57:20] "GET /api/cars/ HTTP/1.1" 200 868
+[27/Oct/2026 12:57:20] "GET /api/csrf/ HTTP/1.1" 200 81
+[27/Oct/2026 12:57:20] "POST /api/dealers/1/reviews/ HTTP/1.1" 201 449
+[27/Oct/2026 12:57:20] "GET /api/dealers/1/reviews/ HTTP/1.1" 200 1147
+[27/Oct/2026 12:57:20] "GET /api/csrf/ HTTP/1.1" 200 81
+Bad Request: /api/dealers/1/reviews/
+[27/Oct/2026 12:57:20] "POST /api/dealers/1/reviews/ HTTP/1.1" 400 41
+Forbidden (CSRF cookie not set.): /api/login/
+[27/Oct/2026 12:57:20] "POST /api/login/ HTTP/1.1" 403 2855
+[27/Oct/2026 12:57:20] "GET /api/csrf/ HTTP/1.1" 200 81
+[27/Oct/2026 12:57:20] "POST /api/logout/ HTTP/1.1" 200 39
+[27/Oct/2026 12:57:20] "GET /api/csrf/ HTTP/1.1" 200 81
+Unauthorized: /api/dealers/1/reviews/
+[27/Oct/2026 12:57:20] "POST /api/dealers/1/reviews/ HTTP/1.1" 401 39
+[27/Oct/2026 13:00:58] "GET /api/csrf/ HTTP/1.1" 200 81
+[27/Oct/2026 13:01:00] "POST /api/login/ HTTP/1.1" 200 41
+[27/Oct/2026 13:01:00] "GET /api/dealers/1/reviews/ HTTP/1.1" 200 1147
+[27/Oct/2026 13:01:00] "GET /api/dealers/ HTTP/1.1" 200 1947
+[27/Oct/2026 13:01:00] "GET /api/dealers/1/ HTTP/1.1" 200 264
+[27/Oct/2026 13:01:00] "GET /api/dealers/?state=Kansas HTTP/1.1" 200 746
+[27/Oct/2026 13:01:00] "GET /api/cars/ HTTP/1.1" 200 868
+[27/Oct/2026 13:01:00] "GET /api/analyze/?text=Fantastic%20services HTTP/1.1" 200 61
+[27/Oct/2026 13:01:00] "GET /api/csrf/ HTTP/1.1" 200 81
+[27/Oct/2026 13:01:00] "POST /api/logout/ HTTP/1.1" 200 39
+[27/Oct/2026 13:05:13] "GET /health/ HTTP/1.1" 200 37
+[27/Oct/2026 13:05:13] "GET /api/dealers/ HTTP/1.1" 200 1947
+[27/Oct/2026 13:05:13] "GET /api/cars/ HTTP/1.1" 200 868
+[27/Oct/2026 13:05:13] "GET /static/About.html HTTP/1.1" 200 4026
+[27/Oct/2026 13:05:13] "GET /static/Contact.html HTTP/1.1" 200 2919
+[27/Oct/2026 13:05:13] "GET /dealers/1 HTTP/1.1" 200 574
+[27/Oct/2026 13:05:13] "GET / HTTP/1.1" 200 574
+[27/Oct/2026 13:05:13] "GET /static/assets/index-DYkUSIHt.js HTTP/1.1" 200 280529
+[27/Oct/2026 13:05:13] "GET /static/assets/index-DNiQrCgo.css HTTP/1.1" 200 14781

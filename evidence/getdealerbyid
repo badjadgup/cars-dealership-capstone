@@ -1,0 +1,5 @@
+COMMAND (shell variables and local file paths normalized):
+'C:\Windows\system32\curl.exe' --silent --show-error --fail-with-body --max-time 30 --cookie session.cookies --cookie-jar session.cookies http://127.0.0.1:8000/api/dealers/1/
+
+ACTUAL OUTPUT:
+{"dealer": {"id": 1, "full_name": "Prairie Auto House", "city": "Wichita", "state": "Kansas", "st": "KS", "address": "1240 E Douglas Avenue", "zip": "67202", "phone": "(316) 555-0101", "lat": 37.6872, "long": -97.3301, "brands": "Toyota \u00b7 Honda \u00b7 Ford"}}

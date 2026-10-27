@@ -1,0 +1,5 @@
+COMMAND (shell variables and local file paths normalized):
+'C:\Windows\system32\curl.exe' --silent --show-error --fail-with-body --max-time 30 --cookie session.cookies --cookie-jar session.cookies http://127.0.0.1:8000/api/cars/
+
+ACTUAL OUTPUT:
+{"car_makes": [{"id": 4, "name": "BMW", "models": [{"id": 10, "name": "3 Series", "body_type": "Sedan"}, {"id": 11, "name": "X5", "body_type": "SUV"}]}, {"id": 3, "name": "Ford", "models": [{"id": 9, "name": "Explorer", "body_type": "SUV"}, {"id": 8, "name": "F-150", "body_type": "Truck"}, {"id": 7, "name": "Mustang", "body_type": "Coupe"}]}, {"id": 2, "name": "Honda", "models": [{"id": 6, "name": "Accord", "body_type": "Sedan"}, {"id": 5, "name": "CR-V", "body_type": "SUV"}, {"id": 4, "name": "Civic", "body_type": "Sedan"}]}, {"id": 5, "name": "Hyundai", "models": [{"id": 12, "name": "Elantra", "body_type": "Sedan"}, {"id": 13, "name": "Tucson", "body_type": "SUV"}]}, {"id": 1, "name": "Toyota", "models": [{"id": 1, "name": "Camry", "body_type": "Sedan"}, {"id": 3, "name": "Corolla", "body_type": "Sedan"}, {"id": 2, "name": "RAV4", "body_type": "SUV"}]}]}

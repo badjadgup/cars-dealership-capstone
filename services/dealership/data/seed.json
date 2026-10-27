@@ -1,0 +1,152 @@
+{
+  "dealers": [
+    {
+      "id": 1,
+      "full_name": "Prairie Auto House",
+      "city": "Wichita",
+      "state": "Kansas",
+      "st": "KS",
+      "address": "1240 E Douglas Avenue",
+      "zip": "67202",
+      "phone": "(316) 555-0101",
+      "lat": 37.6872,
+      "long": -97.3301,
+      "brands": "Toyota \u00b7 Honda \u00b7 Ford"
+    },
+    {
+      "id": 2,
+      "full_name": "Sunflower Motors",
+      "city": "Topeka",
+      "state": "Kansas",
+      "st": "KS",
+      "address": "860 S Kansas Avenue",
+      "zip": "66603",
+      "phone": "(785) 555-0102",
+      "lat": 39.0473,
+      "long": -95.6752,
+      "brands": "Ford \u00b7 Hyundai"
+    },
+    {
+      "id": 3,
+      "full_name": "Flint Hills Automotive",
+      "city": "Manhattan",
+      "state": "Kansas",
+      "st": "KS",
+      "address": "320 Poyntz Avenue",
+      "zip": "66502",
+      "phone": "(785) 555-0103",
+      "lat": 39.1836,
+      "long": -96.5717,
+      "brands": "Toyota \u00b7 BMW"
+    },
+    {
+      "id": 4,
+      "full_name": "Pacific Drive",
+      "city": "San Diego",
+      "state": "California",
+      "st": "CA",
+      "address": "410 Harbor Drive",
+      "zip": "92101",
+      "phone": "(619) 555-0104",
+      "lat": 32.7157,
+      "long": -117.1611,
+      "brands": "BMW \u00b7 Honda"
+    },
+    {
+      "id": 5,
+      "full_name": "Lone Star Auto",
+      "city": "Austin",
+      "state": "Texas",
+      "st": "TX",
+      "address": "905 Congress Avenue",
+      "zip": "78701",
+      "phone": "(512) 555-0105",
+      "lat": 30.2672,
+      "long": -97.7431,
+      "brands": "Ford \u00b7 Toyota"
+    },
+    {
+      "id": 6,
+      "full_name": "Golden Gate Motors",
+      "city": "San Francisco",
+      "state": "California",
+      "st": "CA",
+      "address": "770 Market Street",
+      "zip": "94103",
+      "phone": "(415) 555-0106",
+      "lat": 37.7749,
+      "long": -122.4194,
+      "brands": "BMW \u00b7 Hyundai"
+    },
+    {
+      "id": 7,
+      "full_name": "Lakeside Car Company",
+      "city": "Chicago",
+      "state": "Illinois",
+      "st": "IL",
+      "address": "215 W Lake Street",
+      "zip": "60606",
+      "phone": "(312) 555-0107",
+      "lat": 41.8781,
+      "long": -87.6298,
+      "brands": "Honda \u00b7 Ford"
+    },
+    {
+      "id": 8,
+      "full_name": "Hill Country Cars",
+      "city": "San Antonio",
+      "state": "Texas",
+      "st": "TX",
+      "address": "630 Broadway Street",
+      "zip": "78215",
+      "phone": "(210) 555-0108",
+      "lat": 29.4241,
+      "long": -98.4936,
+      "brands": "Toyota \u00b7 Hyundai"
+    }
+  ],
+  "reviews": [
+    {
+      "id": "seed-1",
+      "dealership": 1,
+      "name": "Jordan Miller",
+      "username": "sample_jordan",
+      "review": "Friendly staff and fantastic service. The entire purchase was easy and transparent.",
+      "rating": 5,
+      "car_make": "Toyota",
+      "car_model": "Camry",
+      "car_year": 2024,
+      "purchase_date": "2025-05-16",
+      "sentiment": "positive",
+      "created_at": "2025-05-17T10:00:00Z"
+    },
+    {
+      "id": "seed-2",
+      "dealership": 1,
+      "name": "Taylor Reed",
+      "username": "sample_taylor",
+      "review": "A helpful team and a good selection. I would recommend this dealership.",
+      "rating": 4,
+      "car_make": "Honda",
+      "car_model": "Civic",
+      "car_year": 2023,
+      "purchase_date": "2025-06-12",
+      "sentiment": "positive",
+      "created_at": "2025-06-13T10:00:00Z"
+    },
+    {
+      "id": "seed-3",
+      "dealership": 2,
+      "name": "Sam Patel",
+      "username": "sample_sam",
+      "review": "The car was ready on time. The paperwork took an hour.",
+      "rating": 3,
+      "car_make": "Ford",
+      "car_model": "Explorer",
+      "car_year": 2024,
+      "purchase_date": "2025-04-20",
+      "sentiment": "neutral",
+      "created_at": "2025-04-21T10:00:00Z"
+    }
+  ]
+}

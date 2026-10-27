@@ -1,0 +1,54 @@
+name: Capstone CI
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    services:
+      mongo:
+        image: mongo:7
+        ports: ["27017:27017"]
+        options: >-
+          --health-cmd "mongosh --quiet --eval 'db.adminCommand({ping:1}).ok'"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Install Python dependencies
+        run: pip install -r server/requirements.txt -r services/sentiment/requirements.txt
+      - name: Install and build React
+        working-directory: server/frontend
+        run: |
+          npm ci
+          npm run build
+      - name: Check Django migrations and tests
+        working-directory: server
+        run: |
+          python manage.py makemigrations --check --dry-run
+          python manage.py test
+          python manage.py check
+      - name: Test sentiment service
+        working-directory: services/sentiment
+        run: python -m unittest -v
+      - name: Test dealership service
+        env:
+          MONGODB_TEST_URI: mongodb://127.0.0.1:27017
+        working-directory: services/dealership
+        run: |
+          npm ci
+          npm test
+      - name: Build deployable container images
+        run: |
+          docker build -t cars-web:test .
+          docker build -t cars-dealers:test services/dealership
+          docker build -t cars-sentiment:test services/sentiment

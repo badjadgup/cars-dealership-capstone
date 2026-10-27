@@ -1,0 +1,28 @@
+Live end-to-end API verification passed.
+Registration: previously exercised with real CSRF cookie/token.
+Login: HTTP 200
+Car catalogue: 5 makes, 13 models
+Review creation: HTTP 201
+Sentiment: positive
+Authenticated author enforced: capstone_driver (spoofed username ignored)
+Posted review retrieved from persistent store: yes
+Invalid rating rejected: HTTP 400
+Missing CSRF token rejected: HTTP 403
+Logout: HTTP 200
+Anonymous review rejected: HTTP 401
+
+Actual saved review:
+{
+  "id": "d7d4c85c-fac8-46f7-81d0-5856aa3c0b89",
+  "dealership": 1,
+  "created_at": "2026-10-27T07:27:20.650Z",
+  "name": "Capstone Driver",
+  "username": "capstone_driver",
+  "review": "Fantastic services! The team was friendly, helpful, and transparent throughout my purchase. I would recommend Prairie Auto House.",
+  "rating": 5,
+  "car_make": "Toyota",
+  "car_model": "Camry",
+  "car_year": 2025,
+  "purchase_date": "2026-10-20",
+  "sentiment": "positive"
+}
