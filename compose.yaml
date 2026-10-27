@@ -1,0 +1,39 @@
+services:
+  mongo:
+    image: mongo:7
+    volumes: ["mongo-data:/data/db"]
+    healthcheck:
+      test:
+        ["CMD", "mongosh", "--quiet", "--eval", "db.adminCommand('ping').ok"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+  dealers:
+    build: services/dealership
+    environment:
+      MONGODB_URI: mongodb://mongo:27017/dealerships
+      SERVICE_API_KEY: ${SERVICE_API_KEY:-local-service-key}
+      NODE_ENV: development
+    depends_on:
+      mongo: { condition: service_healthy }
+  sentiment:
+    build: services/sentiment
+    environment:
+      SERVICE_API_KEY: ${SERVICE_API_KEY:-local-service-key}
+      APP_ENV: development
+  web:
+    build: .
+    ports: ["8000:8000"]
+    environment:
+      DEBUG: "true"
+      SECRET_KEY: ${SECRET_KEY:-local-compose-development-key}
+      SERVICE_API_KEY: ${SERVICE_API_KEY:-local-service-key}
+      DEALERSHIP_URL: http://dealers:3030
+      SENTIMENT_URL: http://sentiment:5050
+      ALLOWED_HOSTS: localhost,127.0.0.1
+      SQLITE_PATH: /data/db.sqlite3
+    volumes: ["django-data:/data"]
+    depends_on: [dealers, sentiment]
+volumes:
+  mongo-data:
+  django-data:

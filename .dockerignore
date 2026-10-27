@@ -1,0 +1,9 @@
+.git
+**/node_modules
+**/__pycache__
+**/*.sqlite3*
+**/.env
+evidence
+**/local.json
+**/dist
+**/staticfiles

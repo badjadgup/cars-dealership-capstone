@@ -1,0 +1,12 @@
+__pycache__/
+*.py[cod]
+*.sqlite3*
+.env
+.venv/
+node_modules/
+server/frontend/dist/
+server/staticfiles/
+services/dealership/data/local.json
+evidence/*.cookies
+evidence/*secret*
+*.log
